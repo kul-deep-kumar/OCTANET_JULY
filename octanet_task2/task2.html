@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins";
+      }
+
+      body {
+        min-height: 87.1vh;
+        width: 100%;
+        background-image:url(./image/keith-misner-h0Vxgz5tyXA-unsplash.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      h2 {
+        display: flex;
+        justify-content: center;
+        font-size: xx-large;
+        color: #1c1616;
+        padding-top: 20px;
+      }
+      .to-do {
+        width: 100%;
+        max-width: 510px;
+        background: #fff;
+        margin: 100px;
+        padding: 0.1px 4px 4px 2px;
+        border-radius: 10px;
+      }
+      #new-task {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        background: rgb(206, 198, 198);
+        border-radius: 5px;
+        /* padding: 5px; */
+        margin: 20px;
+      }
+      input {
+        flex: 1;
+        background: transparent;
+        color: rgb(8, 22, 51);
+        font-size: 15px;
+        padding: 20px 40px;
+        border: none;
+        /* outline: none; */
+      }
+      #addTask {
+        margin: 5px;
+        padding: 15px 50px 15px;
+        border: none;
+        border-radius: 30px;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 6, 0.984),
+          rgba(11, 1, 1, 0.664)
+        );
+        color: white;
+        cursor: pointer;
+      }
+      #addTask:hover {
+        border: 2px solid #534343;
+
+        color: black;
+        background: rgb(109, 202, 109);
+      }
+
+      .task-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        list-style: none;
+        padding: 12px 8px 20px 50px;
+      }
+      .task-list li {
+        padding: 5px;
+        margin: 15px 80px 10px 2px;
+        background: rgb(210, 206, 206);
+        border-radius: 5px;
+      }
+
+      h4 {
+        font-weight: 350;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="to-do">
+        <h2>My To-Do List</h2>
+        <div id="new-task">
+          <input type="text" placeholder="Add your tasks here" />
+          <button id="addTask">Add</button>
+        </div>
+        <ul id="list" class="task-list">
+          <li class="contain">
+            <h4>Task 1</h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    let addTask = document.getElementById("addTask");
+    addTask.addEventListener("click", addNewTask);
+
+    function addNewTask(e) {
+      let currentAdd = e.currentTarget;
+      let currentInput = currentAdd.previousElementSibling;
+      let currentTask = currentInput.value;
+
+      if (currentTask.trim() === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      let newLi = document.createElement("li");
+      newLi.classList.add("task-list");
+      newLi.innerHTML = `<h4>${currentTask}</h4>`;
+
+      let List = document.getElementById("list");
+      List.appendChild(newLi);
+
+      currentInput.value = "";
+    }
+  </script>
+</html>
